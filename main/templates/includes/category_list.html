@@ -11,7 +11,7 @@
                             {% for cat in category %}
                               <tr>
                                 <td>{{cat.name}}</td>
-                                  <td><a href="{% url 'main:active_queries' %}?cat_id={{cat.id}}">{% active_count cat.id %} View Queries</a></td>
+                                  <td><a class="btn btn-success" href="{% url 'main:active_queries' %}?cat_id={{cat.id}}">{% active_count cat.id %} View Queries</a></td>
                               </tr>
                             {% endfor %}
 
