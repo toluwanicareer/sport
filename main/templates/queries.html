@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+        <div class="row">
+            <div class="col-md-6">
+                {% include 'includes/query_list.html' %}
+            </div>
+            <div class="col-md-6">
+                {% include 'includes/category_list.html' %}
+            </div>
+        </div>
+     {% include 'includes/result.html' %}
+
+{% endblock %}
+{%  block script %}
+    <script>
+        $('.query_result').click(function(e){
+            e.preventDefault();
+
+            show_result($(this).attr('data-query'), $(this).attr('data-sport').toLowerCase());
+        })
+    </script>
+{% endblock %}

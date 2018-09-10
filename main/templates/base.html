@@ -1,0 +1,56 @@
+<html lang="en">
+	<head>
+	    <meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+	    <meta name="copyright" content="Copyright Swyfft LLC 2018" />
+	    <meta name="description" content="Swyfft is disrupting the homeowners insurance industry by using big data and analytics to make buying insurance as easy as typing in your address." />
+	    <meta name="keywords" content="swyfft, insurance, homeowners insurance, data, analytics" />
+
+	    <title>BetterBind Homeowners </title>
+	    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" typpe="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+	</head>
+
+	<body>
+    <div class="container" style="margin-top: 40px">
+    {% block content %}{% endblock %}
+    </div>
+    </body>
+	<footer>
+		<script
+  			src="https://code.jquery.com/jquery-3.3.1.min.js"
+  			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  			crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+
+	</footer>
+
+    <script>
+         function show_result(query,sport) {
+             data = {
+                 'sdql': query, 'output': 'default',
+                 'api_key': 'guest',
+                 'host': 'sportsdatabase.com', 'result_only': 1
+             };
+             $.getJSON('http://api.sportsdatabase.com/' + sport + '/query.json?jsoncallback=?', data, function () {
+
+             }).done(function (data) {
+                 console.log(data);
+                 content = data.html;
+
+                 $('.js_content').html(content);
+                 $('#DT_Table').DataTable();
+                 $('#DT_Table').addClass('table');
+
+
+             }).fail(function (err) {
+                 alert('Network Error')
+
+
+             });
+         }
+    </script>
+{% block script %}{% endblock %}
+</html>

@@ -1,0 +1,22 @@
+{% load active_count %}
+<table class="table">
+    <thead>
+      <tr>
+        <th>Query</th>
+        <th>Description</th>
+        <th>View Result</th>
+         <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for query in queries %}
+          <tr>
+            <td>{{query.name}}</td>
+             <td>{{query.description}}</td>
+              <td><a data-id="{{ query.id }}" data-sport="{{ query.category.name }}" data-query="{{ query.query }}" class="query_result" href="#">View Result</a></td>
+              <td>{{query.query_date}}</td>
+          </tr>
+        {% endfor %}
+
+    </tbody>
+</table>

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block content %}
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <form class="js_query_form">
+                        <div class="form-group">
+                            <h3>Enter Query</h3>
+                            <input type="text" class="form-control js_query" placeholder="Enter Query" required>
+                        </div>
+                        <div class="form-group">
+                            <h3>Enter Query</h3>
+                            <select class="form-control js_sport" placeholder="Enter Query" required>
+
+                                {% for category in category %}
+                                    <option cat_id="{{ category.id }}" value="{{category.name|lower}}">{{category.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                            <button class="btn btn-primary js_save" >Save Query</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-6">
+                    {% include "includes/category_list.html" %}
+                </div>
+            </div>
+           {% include 'includes/result.html' %}
+
+
+
+<div class="modal" tabindex="-1" role="dialog" id="queryformmodal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Save Query</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'main:save_query' %}" method="post" name="query_form" class="js_query_form_save">
+            {%  csrf_token %}
+            <div class="form-group">
+                <label>Name</label>
+                <input class="form-control" name="name" type="text" required>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea rows="4" required name="description" class="form-control"></textarea>
+            </div>
+                 <select class="form-control js_sport" name="category" placeholder="Enter Query" required>
+                    <option value="">Select Sport</option>
+                    {% for category in category %}
+                        <option value="{{ category.id }}">{{category.name}}</option>
+                    {% endfor %}
+                </select>
+            <div class="form-group">
+                <input name="query" id="query" type="hidden"/>
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+     var t = $('#example').DataTable();
+    $('.js_query_form').submit(function(e) {
+        e.preventDefault();
+        query = $('.js_query').val();
+        //url = 'http://api.sportsdatabase.com/nfl/query.json';
+        sport= $('.js_sport').val();
+        show_result(query,sport);
+        });
+
+        $('.js_save').click(function(e){
+            e.preventDefault();
+            $('#query').val($('.js_query').val());
+            $('#sport').val($('.js_sport').val());
+            $('#queryformmodal').modal();
+        });
+
+
+</script>
+
+{% endblock %}}

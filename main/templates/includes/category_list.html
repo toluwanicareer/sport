@@ -1,0 +1,19 @@
+{% load active_count %}
+<table class="table">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Active Query</th>
+                            <th>All Query</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for cat in category %}
+                              <tr>
+                                <td>{{cat.name}}</td>
+                                  <td><a href="{% url 'main:active_queries' %}?cat_id={{cat.id}}">{% active_count cat.id %} View Queries</a></td>
+                              </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
