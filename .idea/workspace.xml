@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="34e15a0f-0438-4b31-a404-810f3283583b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/includes/category_list.html" afterPath="$PROJECT_DIR$/main/templates/includes/category_list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/includes/query_list.html" afterPath="$PROJECT_DIR$/main/templates/includes/query_list.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -76,8 +75,8 @@
       <file leaf-file-name="query_list.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/templates/includes/query_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+            <state relative-caret-position="152">
+              <caret line="15" column="56" lean-forward="false" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -512,7 +511,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -669,8 +668,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/templates/includes/query_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+        <state relative-caret-position="152">
+          <caret line="15" column="56" lean-forward="false" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
           <folding />
         </state>
       </provider>

@@ -13,7 +13,7 @@
           <tr>
             <td>{{query.name}}</td>
              <td>{{query.description}}</td>
-              <td><a class="btn btn-warning" data-id="{{ query.id }}" data-sport="{{ query.category.name }}" data-query="{{ query.query }}" class="query_result" href="#">View Result</a></td>
+              <td><a class="btn btn-warning query_result" data-id="{{ query.id }}" data-sport="{{ query.category.name }}" data-query="{{ query.query }}"  href="#">View Result</a></td>
               <td>{{query.query_date}}</td>
           </tr>
         {% endfor %}
