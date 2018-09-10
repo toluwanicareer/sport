@@ -29,6 +29,7 @@
 
     <script>
          function show_result(query,sport) {
+             $('.js_content').html('<h1>Loading ...</h1>');
              data = {
                  'sdql': query, 'output': 'default',
                  'api_key': 'guest',
