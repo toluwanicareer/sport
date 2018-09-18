@@ -105,7 +105,7 @@ class deleteQuery(View):
     def get(self, request, *args, **kwargs):
         id=request.GET.get('id')
         Query.objects.get(id=id).delete()
-        return HttpResponse('/')
+        return HttpResponseRedirect('/')
 
 class updateQuery(UpdateView):
     model=Query
