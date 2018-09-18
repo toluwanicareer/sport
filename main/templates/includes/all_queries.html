@@ -14,7 +14,8 @@
             <td>{{query.name}}</td>
              <td>{{query.description}}</td>
               <td><a class="btn btn-warning query_result" data-id="{{ query.id }}" data-sport="{{ query.category.name }}" data-query="{{ query.query }}"  href="#">View Result</a></td>
-              {% include 'includes/action_link.html' %}
+              <td><a href="/query_delete?id={{query.id}}">delete</a></td>
+              <td><a href="query/{{query.id}}" class="js_edit" query_id="">Edit</a></td>
           </tr>
         {% endfor %}
 
