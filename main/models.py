@@ -22,9 +22,17 @@ class Query(models.Model):
     query_date=models.DateTimeField(auto_now_add=True)
     result=models.TextField(null=True)
     category=models.ForeignKey(Category, on_delete=models.CASCADE)
-    c_objects=QueryManager()
+    #c_objects=QueryManager()
     description=models.TextField(null=True)
     name=models.CharField(max_length=100, null=True)
+
+
+class Track(models.Model):
+    date=models.DateField(max_length=200)
+    query=models.ForeignKey(Query,on_delete=models.CASCADE)
+
+
+
 
 
 

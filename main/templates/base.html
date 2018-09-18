@@ -11,7 +11,13 @@
         <link rel="stylesheet" typpe="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 	</head>
 
+
 	<body>
+    <style>
+        .trends_conten >form> table:first-of-type{
+            display:none
+        }
+    </style>
     <nav class="navbar navbar-inverse">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -62,15 +68,22 @@
                  'api_key': 'guest',
                  'host': 'sportsdatabase.com', 'result_only': 1
              };
+
              $.getJSON('http://api.sportsdatabase.com/' + sport + '/query.json?jsoncallback=?', data, function () {
 
              }).done(function (data) {
                  console.log(data);
                  content = data.html;
+                 //send_content_to_backend(query);
 
                  $('.js_content').html(content);
-                 $('#DT_Table').DataTable();
+                 table=$('#DT_Table').DataTable({"pageLength": 30});
+                 table
+                        .column( '0:visible' )
+                        .order( 'asc' )
+                        .draw();
                  $('#DT_Table').addClass('table');
+
 
 
              }).fail(function (err) {
@@ -78,6 +91,35 @@
 
 
              });
+         }
+
+         $('.js_query_form_save').submit(function(e) {
+             e.preventDefault();
+             query=$('#query').val();//TODO : check for @ so that to know if it should be added ot not
+             sdql='date@'+query;
+             data = {
+                 'sdql': sdql, 'output': 'json',
+                 'api_key': 'guest'
+             };
+             sport=$('#sport_name option:selected').text().toLowerCase();
+             category=$('#sport_name').val();
+             $.getJSON('http://api.sportsdatabase.com/' + sport + '/query.json?jsoncallback=?', data, function () {
+                console.log('shitty shit')
+
+             }).done(function(data){
+                 $.post('/handle_content', {'result':JSON.stringify(data.groups),
+                     'category':category,
+                     'query':query ,
+                     'name':$('#query_name').val(),
+                     'description':$('#query_description').val()
+                 })
+                     .done(function(data){
+                         alert(data.detail)
+                 })
+             })
+         } );
+         function send_content_to_backend(sdql){
+             $.get('/handle_content', {'sdql':sdql}).done(function(){})
          }
     </script>
 {% block script %}{% endblock %}
