@@ -17,6 +17,7 @@ import json
 from .forms import QueryForm
 from bs4 import BeautifulSoup
 import datetime
+from django.utils import timezone
 
 
 class Home(ListView):
@@ -51,7 +52,8 @@ class handleContent(View):
         for group in content:
             dates=list(set(group['columns'][0]+dates))
         dates=[datetime.datetime(year=int(str(s)[0:4]), month=int(str(s)[4:6]), day=int(str(s)[6:8])) for s in dates ]
-        now=datetime.datetime.now()
+        #now=datetime.datetime.now()
+        now=timezone.now()
         for date in dates:
             if now.date() <= date.date():
                 Track(query=query, date=date).save()
@@ -63,7 +65,7 @@ class getActiveQuery(View):
     def get(self, request,*args, **kwargs):
         cat_id=request.GET.get('cat_id')
         #active_queries=Query.c_objects.active(cat_id)
-        now=datetime.datetime.now().date()
+        now=timezone.now().date()
         active_trends=Track.objects.filter(date__lte=now).filter(query__category__id=cat_id)
         categories=Category.objects.all()
         sport=Category.objects.get(id=cat_id)
