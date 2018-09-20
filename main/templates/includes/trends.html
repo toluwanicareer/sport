@@ -1,5 +1,5 @@
 <h4>
-{% for trend in trends %}
+{% for trend in active_games %}
     <p>{{trend.team}} vs {{trend.opp}}  {{trend.query.id}}</p>
     {% endfor %}
 </h4>
