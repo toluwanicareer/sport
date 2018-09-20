@@ -17,6 +17,9 @@
         .trends_conten >form> table:first-of-type{
             display:none
         }
+        #DT_Table td{
+            white-space: nowrap;
+        }
     </style>
     <nav class="navbar navbar-inverse">
   <div class="container">
@@ -56,6 +59,8 @@
   			crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+        <script src="https://cdn.datatables.net/plug-ins/1.10.19/sorting/datetime-moment.js"></script>
 
 
 	</footer>
@@ -77,10 +82,11 @@
                  //send_content_to_backend(query);
 
                  $('.js_content').html(content);
+                 $.fn.dataTable.moment('MMM DD, YYYY');
                  table=$('#DT_Table').DataTable({"pageLength": 30, "lengthMenu": [ 10,50,100,200 ]});
                  table
                         .column( '0:visible' )
-                        .order( 'asc' )
+                        .order( 'desc' )
                         .draw();
                  $('#DT_Table').addClass('table');
                  $('table').addClass('table');
@@ -97,7 +103,7 @@
          $('.js_query_form_save').submit(function(e) {
              e.preventDefault();
              query=$('#query').val();//TODO : check for @ so that to know if it should be added ot not
-             sdql='date@'+query;
+             sdql='date,team,opp@'+query;
              data = {
                  'sdql': sdql, 'output': 'json',
                  'api_key': 'guest'
@@ -115,7 +121,7 @@
                      'description':$('#query_description').val()
                  })
                      .done(function(data){
-                         document.location.reload();
+                         //document.location.reload();
                  })
              })
          } );

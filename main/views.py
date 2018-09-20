@@ -49,14 +49,20 @@ class handleContent(View):
         else:
             return JsonResponse({'status':False, 'detail':form.errors})
         dates=[]
+        teams=[]
+        opps=[]
         for group in content:
-            dates=list(set(group['columns'][0]+dates))
+            #dates=list(set(group['columns'][0]+dates))
+            dates=group['columns'][0]+dates
+            teams=group['columns'][1]+teams
+            opps=group['columns'][2]+opps
+
         dates=[datetime.datetime(year=int(str(s)[0:4]), month=int(str(s)[4:6]), day=int(str(s)[6:8])) for s in dates ]
         #now=datetime.datetime.now()
         now=timezone.now()
-        for date in dates:
+        for index,date in enumerate(dates):
             if now.date() <= date.date():
-                Track(query=query, date=date).save()
+                Track(query=query, date=date, team=teams[index],opp=opps[index]).save()
         return JsonResponse({'status':True, 'detail':'Successful'})
 
 
@@ -66,11 +72,11 @@ class getActiveQuery(View):
         cat_id=request.GET.get('cat_id')
         #active_queries=Query.c_objects.active(cat_id)
         now=timezone.now().date()
-        active_trends=Track.objects.filter(date__lte=now).filter(query__category__id=cat_id).order_by('-query__query_date')
+        active_trends=Track.objects.filter(date=now).filter(query__category__id=cat_id).order_by('-query__query_date')
         categories=Category.objects.all()
         sport=Category.objects.get(id=cat_id)
         #response=render_to_string('includes/query_list.html',{'queries':active_trends})
-        return render(request, 'queries.html', {'trends':active_trends, 'category':categories, 'sport':sport})
+        return render(request, 'queries.html', {'trends':active_trends, 'category':categories, 'sport':sport,  'cat_tile':'Active ' + sport.name})
 
 @method_decorator(csrf_exempt, name='dispatch')
 class format_data(View):
@@ -99,7 +105,8 @@ class getAllQuery(View):
         categories=Category.objects.all()
         sport=Category.objects.get(id=cat_id)
         all_query=Query.objects.filter(category__id=cat_id).order_by('-query_date')
-        return render(request, 'queries.html', {'queries':all_query, 'category':categories, 'sport':sport, 'all':True})
+        return render(request, 'queries.html', {'queries':all_query, 'category':categories, 'sport':sport, 'all':True,
+                                                'cat_tile':'All ' + sport.name})
 
 
 class deleteQuery(View):
