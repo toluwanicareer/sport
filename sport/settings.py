@@ -25,7 +25,7 @@ SECRET_KEY = 'gm@mj94y$o#cn05lfv6fn4y(97qrrp^32^3_14o=q9wg1saj0h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'tolucareer.pythonanywhere.com','127.0.0.1']
+ALLOWED_HOSTS = ['localhost', 'tolucareer.pythonanywhere.com','127.0.0.1','138.197.104.140']
 
 
 # Application definition
@@ -73,14 +73,25 @@ WSGI_APPLICATION = 'sport.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+'''
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'sport_db',
+        'USER': 'developer',
+        'PASSWORD': 'Mamadu69#',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
