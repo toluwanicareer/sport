@@ -125,7 +125,12 @@
                      'description':$('#query_description').val()
                  })
                      .done(function(data){
-                         //document.location.reload();
+                         if (data.status) {
+                             document.location.reload();
+                         }
+                         else{
+                             alert(data.detail)
+                         }
                  })
              })
          } );
