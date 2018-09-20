@@ -1,5 +1,7 @@
 <h4>
-
+{% for trend in trends %}
+    <p>{{trend.team}} vs {{trend.opp}}  {{trend.query.id}}</p>
+    {% endfor %}
 </h4>
 <div class="trends_content">
 <h3> </h3>

@@ -103,7 +103,7 @@
          $('.js_query_form_save').submit(function(e) {
              e.preventDefault();
              query=$('#query').val();//TODO : check for @ so that to know if it should be added ot not
-             sdql='date,team,opp@'+query;
+             sdql='date,team,o:team@'+query;
              data = {
                  'sdql': sdql, 'output': 'json',
                  'api_key': 'guest'

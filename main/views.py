@@ -72,9 +72,10 @@ class getActiveQuery(View):
         cat_id=request.GET.get('cat_id')
         #active_queries=Query.c_objects.active(cat_id)
         now=timezone.now().date()
-        active_trends=Track.objects.filter(date=now).filter(query__category__id=cat_id).order_by('-query__query_date')
+        active_trends=Track.objects.filter(date=now).filter(query__category__id=cat_id)#.order_by('-query__query_date')
         categories=Category.objects.all()
         sport=Category.objects.get(id=cat_id)
+        #pdb.set_trace()
         #response=render_to_string('includes/query_list.html',{'queries':active_trends})
         return render(request, 'queries.html', {'trends':active_trends, 'category':categories, 'sport':sport,  'cat_tile':'Active ' + sport.name})
 
