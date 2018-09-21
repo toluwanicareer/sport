@@ -122,7 +122,7 @@ class updateQuery(UpdateView):
     model=Query
     form_class = QueryForm
     template_name = 'edit_query.html'
-    success_url = '/'
+    success_url = '/active_queries?cat_id=5'
     context_object_name = 'query'
 
 

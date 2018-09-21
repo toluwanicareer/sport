@@ -34,7 +34,10 @@
             show_result($(this).attr('data-query'), $(this).attr('data-sport').toLowerCase());
         })
 
-
+     $('.sequence').each(function(index){
+            query_id=$(this).attr('query-id');
+            $(this).text($("[query_id="+query_id+"]").text())
+    })
 
     </script>
 {% endblock %}

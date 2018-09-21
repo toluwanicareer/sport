@@ -12,7 +12,7 @@
     <tbody>
         {% for trend in trends %}
           <tr>
-              <td>{{trend.query.id}}</td>
+              <td query_id="{{trend.query.id}}">{{forloop.counter}}</td>
             <td>{{trend.query.name}}</td>
              <td>{{trend.query.description}}</td>
               <td><a class="btn btn-warning query_result" data-id="{{ trend.query.id }}" data-sport="{{ trend.query.category.name }}" data-query="{{ trend.query.query }}"  href="#">View Result</a></td>
