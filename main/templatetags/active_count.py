@@ -9,6 +9,6 @@ import pdb
 
 @register.simple_tag
 def active_count(cat_id):
-    count=Track.objects.filter(query__category__id=cat_id).filter(date=timezone.now().date()).values_list('query', flat=True).distinct().count()
+    count=Track.objects.filter(query__category__id=cat_id).filter(date=datetime.datetime.now().date()).values_list('query', flat=True).distinct().count()
     return count
 

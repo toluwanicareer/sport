@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'sport.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -81,7 +81,6 @@ DATABASES = {
     }
 }
 '''
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -92,7 +91,7 @@ DATABASES = {
         'PORT': '',
     }
 }
-
+'''
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -117,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/New_York'#'UTC'
+TIME_ZONE ='America/New_York'#'UTC'
 
 USE_I18N = True
 
