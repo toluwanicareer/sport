@@ -12,7 +12,7 @@
     <tbody>
         {% for query in queries %}
           <tr>
-              <td>{{query.pk}}</td>
+              <td>{{forloop.counter}}</td>
             <td>{{query.name}}</td>
              <td>{{query.description}}</td>
               <td><a class="btn btn-warning query_result" data-id="{{ query.id }}" data-sport="{{ query.category.name }}" data-query="{{ query.query }}"  href="#">View Result</a></td>

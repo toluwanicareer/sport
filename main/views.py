@@ -116,7 +116,7 @@ class deleteQuery(View):
     def get(self, request, *args, **kwargs):
         id=request.GET.get('id')
         Query.objects.get(id=id).delete()
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/active_queries?cat_id=5')
 
 class updateQuery(UpdateView):
     model=Query
