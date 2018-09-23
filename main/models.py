@@ -26,12 +26,18 @@ class Query(models.Model):
     description=models.TextField(null=True)
     name=models.CharField(max_length=100, null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Track(models.Model):
     date=models.DateField(max_length=200)
     query=models.ForeignKey(Query,on_delete=models.CASCADE)
     team=models.CharField(max_length=200, null=True)
     opp=models.CharField(max_length=200, null=True)
+
+    def __str__(self):
+        return self.query.name
 
 
 

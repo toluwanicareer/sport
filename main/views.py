@@ -26,6 +26,9 @@ class Home(ListView):
     template_name='index.html'
 
 
+
+
+
 class saveQuery(CreateView):
     model=Query
     form_class = QueryForm
