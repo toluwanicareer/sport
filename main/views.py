@@ -65,8 +65,8 @@ class handleContent(View):
         #now=timezone.now()
         #pdb.set_trace()
         for index,date in enumerate(dates):
-            if now.date() <= date.date():
-                Track(query=query, date=date, team=teams[index],opp=opps[index]).save()
+            #if now.date() <= date.date():
+            Track(query=query, date=date, team=teams[index],opp=opps[index]).save()
         return JsonResponse({'status':True, 'detail':'Successful'})
 
 
