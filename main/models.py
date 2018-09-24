@@ -25,6 +25,7 @@ class Query(models.Model):
     #c_objects=QueryManager()
     description=models.TextField(null=True)
     name=models.CharField(max_length=100, null=True)
+    query_date.editable=True
 
     def __str__(self):
         return self.name
