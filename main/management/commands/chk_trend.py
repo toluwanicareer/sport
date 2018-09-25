@@ -33,7 +33,6 @@ def build_url(query):
 
 def process_response(text, query):
     response=text.strip().replace('json_callback(','').replace(');','')
-    pdb.set_trace()
     response=json.loads(''.join(response.split()).replace('\'', '"'))
     dates=[]
     teams=[]
