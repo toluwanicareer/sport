@@ -65,8 +65,8 @@ class handleContent(View):
         #now=timezone.now()
         #pdb.set_trace()
         for index,date in enumerate(dates):
-            #if now.date() <= date.date():
-            Track(query=query, date=date, team=teams[index],opp=opps[index]).save()
+            if now.date() <= date.date():
+                Track(query=query, date=date, team=teams[index],opp=opps[index]).save()
         return JsonResponse({'status':True, 'detail':'Successful'})
 
 
@@ -132,6 +132,17 @@ class updateQuery(UpdateView):
 
         
 
+
+
+headers={
+'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+'Accept-Encoding': 'gzip, deflate',
+'Accept-Language':'en-US,en;q=0.9',
+'Cache-Control':'max-age=0',
+'Connection':'api.sportsdatabase.com',
+'If-None-Match': "0133a24a51517e5adaf43d537d9626a445b5fed9",
+'Upgrade-Insecure-Requests': '1',
+}
 
 
 
