@@ -7,6 +7,7 @@ from django.conf import settings
 import json
 import urllib
 import pdb
+import time
 
 class Command(BaseCommand):
     help="update time"
@@ -19,6 +20,7 @@ class Command(BaseCommand):
             url=build_url(query)
             response=requests.post(settings.CRON_URL, json={'url':url})
             process_response(response.text, query, url)
+            time.sleep(5)
 
 def build_url(query):
     url='http://api.sportsdatabase.com/' + query.category.name.lower() + '/query.json'
