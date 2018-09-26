@@ -17,6 +17,7 @@ class QueryManager(models.Manager):
         return self.filter(category__id=cat_id).filter(query_date__lte=timezone.now())
 
 
+
 class Query(models.Model):
     query=models.TextField()
     query_date=models.DateTimeField(auto_now_add=True)
@@ -25,7 +26,7 @@ class Query(models.Model):
     #c_objects=QueryManager()
     description=models.TextField(null=True)
     name=models.CharField(max_length=100, null=True)
-    query_date.editable=True
+    #query_date.editable=True
 
     def __str__(self):
         return self.name
@@ -45,6 +46,9 @@ class Track(models.Model):
 
 
 
+class cError(models.Model):
+    one=models.TextField(null=True)
+    two=models.TextField(null=True)
 
 
 

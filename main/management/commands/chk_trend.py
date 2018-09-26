@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 import datetime
-from ...models import Query, Track
+from ...models import Query, Track, cError
 import requests
 from django.conf import settings
 import json
@@ -18,7 +18,7 @@ class Command(BaseCommand):
         for query in queries:
             url=build_url(query)
             response=requests.post(settings.CRON_URL, json={'url':url})
-            process_response(response.text, query)
+            process_response(response.text, query, url)
 
 def build_url(query):
     url='http://api.sportsdatabase.com/' + query.category.name.lower() + '/query.json'
@@ -31,9 +31,14 @@ def build_url(query):
     return url
 
 
-def process_response(text, query):
-    response=text.strip().replace('json_callback(','').replace(');','')
-    response=json.loads(''.join(response.split()).replace('\'', '"'))
+def process_response(text, query, url):
+    try:
+        response=text.strip().replace('json_callback(','').replace(');','')
+        response=json.loads(''.join(response.split()).replace('\'', '"'))
+    except:
+        cError(one= url+'  '+query.query, two=text).save()
+        return False
+
     dates=[]
     teams=[]
     opps=[]
