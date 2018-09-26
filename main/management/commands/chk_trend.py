@@ -44,18 +44,22 @@ def process_response(text, query, url):
     dates=[]
     teams=[]
     opps=[]
-    for group in response['groups']:
-        # dates=list(set(group['columns'][0]+dates))
-        dates = group['columns'][0] + dates
-        teams = group['columns'][1] + teams
-        opps = group['columns'][2] + opps
+    try:
+        for group in response['groups']:
+            # dates=list(set(group['columns'][0]+dates))
+            dates = group['columns'][0] + dates
+            teams = group['columns'][1] + teams
+            opps = group['columns'][2] + opps
+    except:
+        cError(one=response).save()
+        return False
 
     dates = [datetime.datetime(year=int(str(s)[0:4]), month=int(str(s)[4:6]), day=int(str(s)[6:8])) for s in dates]
     now = datetime.datetime.now()
     # now=timezone.now()
     # pdb.set_trace()
     for index, date in enumerate(dates):
-        if now.date() <= date.date():
+        if now.date() == date.date():
             Track(query=query, date=date, team=teams[index], opp=opps[index]).save()
 
 
